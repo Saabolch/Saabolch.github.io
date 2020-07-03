@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!--elérhetőség és megközelíthetőség
+    aktuális akciók
+    étlap
+
+        elérhetőség és akciók alcímsorok alá, egyszerű bekezdésként
+        térkép az elérhetőség alá, oldal váza és a menü
+        roboto open sans címsorhoz
+        megrendelő neve, email-címe, szállítási címe, megjegyzés
+        5 féle feltét, 2 fajta szósz, mennyiség
+-->
+</head>
+
+<body>
+    <div id="content">
+        <nav>
+            <a href="akcio.html">Akciók</a>
+            <a href="menu.html">Étlap</a>
+            <a href="megrendeles.html">Rendelés</a>
+            <a href="index.html">Elérhetőség</a>
+        </nav>
+        <h1>Megrendelés</h1>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <form action="">
+                    <fieldset >
+                        <legend>Megrendelőlap</legend>
+                        <div class="form-group">
+                            <label for="fullName">Név: *</label>
+                            <input type="text" class="form-control" id="fullName" name="fullName"
+                                placeholder="Ide írd a neved" value="" required>
+                            <small id="nameWarning" class="form-text text-muted">Valami</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail: *</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Ide írd az e-mail címed" value="" required>
+                            <small id="emailWarning" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Szállítási cím: *</label>
+                            <input type="text" class="form-control" id="address" name="address"
+                                placeholder="Ide írd a szállítási címed" value="" required>
+                            <small id="addressWarning" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Megjegyzés</label>
+                            <textarea class="form-control" id="comment" name="comment" rows=3
+                                placeholder="Ide írd az egyéb lényeges közlendőd">
+                        </textarea>
+                            <small id="commentWarning" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="topping" id="topping0" value="0" class="form-check-input" checked>
+                            <label for="topping0" class="form-check-label">Semmi</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="topping" id="topping1" value="300" class="form-check-input">
+                            <label for="topping1" class="form-check-label">Sajt (+300Ft)</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="topping" id="topping2" value="400" class="form-check-input">
+                            <label for="topping2" class="form-check-label">Bacon (+400Ft)</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="topping" id="topping3" value="1000" class="form-check-input">
+                            <label for="topping3" class="form-check-label">Dupla hús (+1000Ft)</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="topping" id="topping4" value="700" class="form-check-input">
+                            <label for="topping4" class="form-check-label">Sajt és bacon együtt (+700Ft)</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="topping" id="topping5" value="1300" class="form-check-input">
+                            <label for="topping5" class="form-check-label">Sajt és dupla hús együtt (+1300Ft)</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="sauce">Szósz</label>
+                            <select name="sauce" id="sauce" class="form-control">
+                                <option value="0">Hagyományos (benne van az árban)</option>
+                                <option value="100">Csípős (+100Ft)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity"></label>
+                            <input type="number" name="quantity" id="quantity" value="1" min="1" max="10" step="1"
+                                class="form-control">
+                            <small id="quantityWarning" class="form-text text-muted"></small>
+                        </div>
+                        <button type="button" onclick="sendOrderData()" id="send" class="btn btn-primary">Megrendelés</button> <span id="message">0 Ft</span>
+                    </fieldset>
+
+                </form>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

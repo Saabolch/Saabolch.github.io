@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
+body
+{
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(255, 208, 0);
+    margin: 0;
+}
+
+h1, h2{
+    font-family: 'Open Sans', sans-serif;
+    color: brown;
+}
+h1{
+    margin-left: 4%;
+
+}
+th{
+    color: #28A745;
+    background-color: rgb(255, 208, 0);
+    font-style: italic;   
+    font-size: 24px;
+}
+p, td, li{
+    color: gray;
+}
+#content
+{
+    background-color: white;
+    width: 80%;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;  
+}
+#content > h2, #content > p, #content > img{
+    margin-left: 4%;    
+}
+
+nav
+{
+    display: flex;
+    justify-content: center;
+  
+}
+
+a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24%;
+    margin-left: 1px;
+    margin-right: 1px;
+    height: 30px;
+    background-color: #28A745;
+    color: rgb(255, 208, 0);
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid rgb(255, 208, 0);
+    font-weight: bold;
+    font-size: 20px;
+}
+a:hover{
+    background-color: rgb(255, 208, 0);
+    color:  #28A745;
+}
+.akcio{
+    display: flex;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: BlanchedAlmond;
+    width: 90%;
+    min-height: 150px;
+    box-shadow: 2px 2px 6px 2px silver;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+
+}
+.akcio_text{
+    width: 80%;
+    overflow: auto;
+    text-align: justify;
+    padding-right: 6px;
+}
+.akcio img{
+
+width: 200px;
+
+min-width: 200px;
+max-width: 200px;
+align-self: center;
+
+}
+
+table{
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#number{
+    width: 5%;
+}
+#product{
+    width: 75%;
+}
+#price{
+    width: 20%;
+ 
+}
+table tr td:nth-child(3){
+    text-align: right;
+
+}
+
+th img:first-of-type{
+    width: 30px;
+    float: left;
+}
+th img:last-of-type{
+    width: 30px;
+    float: right;
+}
+tr:nth-child(odd){
+    background-color: wheat;
+}
+tr:nth-child(even){
+    background-color: ivory;
+}
+
+fieldset{
+    border: 2px solid #28A745;
+    padding: 5px;
+}
+legend
+{
+    width: auto;
+    padding: 0px 4px;
+    color: #28A745;
+}
+#message{
+
+    color: #28A745;
+}
+
+#send{
+    background-color: #28A745;
+    border: 1px solid #289745;
+}
+#send:hover{
+    background-color: #28B745;
+    border: 1px solid #289745;
+}
