@@ -1,0 +1,26 @@
+
+#weatherWidget{
+    background-color:  #28A745;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 10px;
+    padding: 3px 0px 5px 8px;
+    color: rgb(255, 208, 0);
+    font-size: 1.5em;
+}
+#weatherWidget button{
+    background-color:  rgb(255, 208, 0);
+    color: #28A745;
+    border: 1px solid rgb(255, 208, 0);
+    font-weight: bold;
+}
+#weatherWidget button:hover{
+
+    border: 1px solid rgb(205, 170, 0);
+}
+#actualTemperature
+{
+text-align: right;
+padding-right: 30px;
+}

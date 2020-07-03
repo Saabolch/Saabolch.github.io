@@ -64,6 +64,7 @@ a{
 a:hover{
     background-color: rgb(255, 208, 0);
     color:  #28A745;
+    text-decoration: none;
 }
 .akcio{
     display: flex;

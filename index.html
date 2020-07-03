@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elérhetőség</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/weather.css">
 </head>
 
 <body>
@@ -20,6 +23,32 @@
         5 féle feltét, 2 fajta szósz, mennyiség
 -->
     <div id="content">
+        <div id="weatherWidget">
+            <div class="row">
+                <div class="col-sm-6">Időjárás</div>
+                <div id="actualTemperature" class="col-sm-6"></div>
+            </div>
+            <div class="form-row">
+                <div class="col-sm-3">
+                    
+                        <select name="day" id="day" class="form-control inline">
+                            <option value="0">Hétfő</option>
+                            <option value="1">Kedd</option>
+                            <option value="2">Szerda</option>
+                            <option value="3">Csütörtök</option>
+                            <option value="4">Péntek</option>
+                            <option value="5">Szombat</option>
+                            <option value="6">Vasárnap</option>
+                        </select>
+                        
+                    
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary" onclick="showOffer()" >Mutasd</button>
+                </div>
+            </div>
+
+        </div>
         <nav>
             <a href="akcio.html">Akciók</a>
             <a href="menu.html">Étlap</a>
@@ -47,6 +76,7 @@
         <p>Tömegközlekedéssel</p>
         <img src="images/map.png" alt="térkép" width="500px">
     </div>
+    <script src="js/weather.js"></script>
 </body>
 
 </html>
