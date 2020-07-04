@@ -19,8 +19,35 @@
 
     border: 1px solid rgb(205, 170, 0);
 }
+#weatherWidget button:focus{
+
+    box-shadow: 0px 0px 2px 2px rgba(255, 230, 0, 0.8);;
+}
 #actualTemperature
 {
-text-align: right;
-padding-right: 30px;
+    text-align: right;
+
+}
+#actualOffer
+{
+    text-align: right;
+    font-size: 1em; 
+
+}
+.tempstat
+{
+    font-size: 16px;  
+}
+#maxTemp
+{
+    text-align: center;
+}
+#avgTemp
+{
+    text-align: right;
+
+}
+.row, .form-row
+{
+    padding-right: 10px;
 }

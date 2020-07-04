@@ -30,22 +30,30 @@
             </div>
             <div class="form-row">
                 <div class="col-sm-3">
-                    
-                        <select name="day" id="day" class="form-control inline">
-                            <option value="0">Hétfő</option>
-                            <option value="1">Kedd</option>
-                            <option value="2">Szerda</option>
-                            <option value="3">Csütörtök</option>
-                            <option value="4">Péntek</option>
-                            <option value="5">Szombat</option>
-                            <option value="6">Vasárnap</option>
-                        </select>
-                        
-                    
+
+                    <select name="day" id="day" class="form-control inline">
+                        <option value="0">Hétfő</option>
+                        <option value="1">Kedd</option>
+                        <option value="2">Szerda</option>
+                        <option value="3">Csütörtök</option>
+                        <option value="4">Péntek</option>
+                        <option value="5">Szombat</option>
+                        <option value="6">Vasárnap</option>
+                    </select>
+
+
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-primary" onclick="showOffer()" >Mutasd</button>
+                    <button class="btn btn-primary" onclick="showOffer()">Mutasd</button>
                 </div>
+                <div id="actualOffer" class="col-sm-6">
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div id="minTemp" class="tempstat col-sm-4"></div>
+                <div id="maxTemp" class="tempstat col-sm-4"></div>
+                <div id="avgTemp" class="tempstat col-sm-4"></div>
             </div>
 
         </div>
@@ -72,11 +80,11 @@
             <li>Vasárnap: 10:00-22:00</li>
         </ul>
         <h2>Megközelítés</h2>
-        <p>Autóvak</p>
+        <p>Autóval</p>
         <p>Tömegközlekedéssel</p>
         <img src="images/map.png" alt="térkép" width="500px">
     </div>
-    <script src="js/weather.js"></script>
+    <script src="js/weatherObject.js"></script>
 </body>
 
 </html>
