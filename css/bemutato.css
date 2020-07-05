@@ -1,0 +1,33 @@
+#hasabDiv{
+    column-count: 4;
+    width: 100%;
+    column-width: 22%;
+    column-gap: 4%;
+    text-align: justify;
+    column-rule: 8px double skyblue; /* nem módosítja a gap méretét*/
+    background-color: ghostwhite;
+    margin-bottom: 20px;
+}
+h2{
+    column-span: all;
+    text-align: center;
+}
+
+#flexDiv{
+    display: flex;
+    text-align: justify;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#flexDiv > h2{
+    min-width: 100%;
+}
+#flexDiv > p{
+    margin: 4px 4px;
+    display: inline-box;
+    width: 340px;
+}
+label{
+    margin-left: 100px;
+
+}
