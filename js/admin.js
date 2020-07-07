@@ -41,6 +41,8 @@ window.onload = function () {
         return group;
     }
 
+    let addUserButton = document.querySelector("#addUser");
+    addUserButton.addEventListener("click", addUser);
 
     let table = document.querySelector("#users");
     let caption = document.createElement("caption");
@@ -173,6 +175,52 @@ window.onload = function () {
 
     }
 
+    function addUser(){
+
+        let user = {};
+
+        let nameInput = document.querySelector("#newUserName");
+        let emailInput =  document.querySelector("#newUserEmail");
+        let addressInput = document.querySelector("#newUserAddress");
+        let telInput = document.querySelector("#newUserTel");
+
+        user.name = nameInput.value.trim();
+        user.email = emailInput.value.trim();
+        user.address = addressInput.value.trim();
+        user.tel = telInput.value.trim();
+
+        if(!user.name || !user.email || !user.address || !user.tel){
+            alert("minden adatot meg kell adni!");
+            return;
+        }
+
+        let maxId = users[0].id;
+        for(u of users){
+            if(u.id > maxId){
+                maxId = u.id;
+            }
+        }
+        user.id = parseInt(u.id) + 1;
+
+        users.push(user);
+     
+        let tbody = document.querySelector("#users > tbody");
+        let row = document.createElement("tr");
+        createCell(user.id.toString(), row);
+        createCell(user.name, row);
+        createCell(user.email, row);
+        createCell(user.address, row);
+        createCell(user.tel, row);
+        createCell(createButtons(), row);
+        tbody.appendChild(row);
+
+        nameInput.value = "";
+        emailInput.value = "";
+        addressInput.value = "";
+        telInput.value = "";
+
+
+    }
 
 
 };
