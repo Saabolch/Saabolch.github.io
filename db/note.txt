@@ -1,0 +1,19 @@
+A PowerShell-ben ezt kell beállítani, hogy működjön a json-server
+
+Set-ExecutionPolicy -Scope CurrentUser Unrestricted
+
+Ha nem használod, állítsd vissza:
+
+Set-ExecutionPolicy -Scope CurrentUser Restricted
+
+
+json-server --watch .\db\db.json
+
+db.json használata pl:
+http://localhost:3000/users
+
+json-server documentation
+https://github.com/typicode/json-server
+
+npm oldal
+https://www.npmjs.com/

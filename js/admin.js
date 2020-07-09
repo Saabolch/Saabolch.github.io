@@ -8,6 +8,23 @@ let users = [
 
 window.onload = function () {
 
+    let fetchInit = {
+        method: "GET",
+        headers: new Headers(),
+        mode: "cors",
+        cache: "default"
+    };
+
+    const fetchUsers = fetch("http://localhost:3000/users", fetchInit);
+    fetchUsers.then( data => data.json() ).then( users => {
+        console.log("szerver működik!!");
+        init(users); 
+    }).catch( (error) => {
+        console.error(error);
+        init(users); 
+    });
+    
+
     function createCell(html, parent) {
         let td = document.createElement("td");
         if (typeof html == "string") {
@@ -41,39 +58,43 @@ window.onload = function () {
         return group;
     }
 
-    let addUserButton = document.querySelector("#addUser");
-    addUserButton.addEventListener("click", addUser);
+    function init(u) {
 
-    let table = document.querySelector("#users");
-    let caption = document.createElement("caption");
-    caption.innerHTML = "Vásárlók";
-    table.appendChild(caption);
+        let addUserButton = document.querySelector("#addUser");
+        addUserButton.addEventListener("click", addUser);
 
-    let thead = document.createElement("thead");
-    thead.classList.add("thead-dark");
-    let row = document.createElement("tr");
-    createTableHeader("Azonosító", row);
-    createTableHeader("Név", row);
-    createTableHeader("E-mail", row);
-    createTableHeader("Cím", row);
-    createTableHeader("Telefonszám", row);
-    createTableHeader("Kezelés", row);
-    thead.appendChild(row);
-    table.appendChild(thead);
+        let table = document.querySelector("#users");
+        let caption = document.createElement("caption");
+        caption.innerHTML = "Vásárlók";
+        table.appendChild(caption);
 
-    let tbody = document.createElement("tbody");
-
-    for (let user of users) {
+        let thead = document.createElement("thead");
+        thead.classList.add("thead-dark");
         let row = document.createElement("tr");
-        createCell(user.id, row);
-        createCell(user.name, row);
-        createCell(user.email, row);
-        createCell(user.address, row);
-        createCell(user.tel, row);
-        createCell(createButtons(), row);
-        tbody.appendChild(row);
+        createTableHeader("Azonosító", row);
+        createTableHeader("Név", row);
+        createTableHeader("E-mail", row);
+        createTableHeader("Cím", row);
+        createTableHeader("Telefonszám", row);
+        createTableHeader("Kezelés", row);
+        thead.appendChild(row);
+        table.appendChild(thead);
+
+        let tbody = document.createElement("tbody");
+
+        for (let user of u) {
+            let row = document.createElement("tr");
+            createCell(user.id, row);
+            createCell(user.name, row);
+            createCell(user.email, row);
+            createCell(user.address, row);
+            createCell(user.tel, row);
+            createCell(createButtons(), row);
+            tbody.appendChild(row);
+        }
+        table.appendChild(tbody);
+
     }
-    table.appendChild(tbody);
 
     function modifyUser() {
 
@@ -148,7 +169,7 @@ window.onload = function () {
     function deleteUser() {
 
         var erase = confirm("Biztos, hogy törölni akarja a felhasználót?");
-        if(!erase){
+        if (!erase) {
             return;
         }
 
@@ -157,8 +178,8 @@ window.onload = function () {
         let idCell = row.children[0];
         let id = idCell.innerHTML;
 
-        for(var i = 0; i < users.length; i++){ // la az i-t let használatával definiáltam volna, akkor a cikus után már nem létezne (csak a ciklus blokkjában élne)
-            if(users[i].id == id){
+        for (var i = 0; i < users.length; i++) { // la az i-t let használatával definiáltam volna, akkor a cikus után már nem létezne (csak a ciklus blokkjában élne)
+            if (users[i].id == id) {
                 break;
             }
         }
@@ -167,7 +188,7 @@ window.onload = function () {
         table.removeChild(row);
 
         //alert(users.length);
-        for(let i = 0; i < users.length; i++){
+        for (let i = 0; i < users.length; i++) {
 
             //alert(users[i].name);
         }
@@ -175,12 +196,12 @@ window.onload = function () {
 
     }
 
-    function addUser(){
+    function addUser() {
 
         let user = {};
 
         let nameInput = document.querySelector("#newUserName");
-        let emailInput =  document.querySelector("#newUserEmail");
+        let emailInput = document.querySelector("#newUserEmail");
         let addressInput = document.querySelector("#newUserAddress");
         let telInput = document.querySelector("#newUserTel");
 
@@ -189,21 +210,21 @@ window.onload = function () {
         user.address = addressInput.value.trim();
         user.tel = telInput.value.trim();
 
-        if(!user.name || !user.email || !user.address || !user.tel){
+        if (!user.name || !user.email || !user.address || !user.tel) {
             alert("minden adatot meg kell adni!");
             return;
         }
 
         let maxId = users[0].id;
-        for(u of users){
-            if(u.id > maxId){
+        for (u of users) {
+            if (u.id > maxId) {
                 maxId = u.id;
             }
         }
         user.id = parseInt(u.id) + 1;
 
         users.push(user);
-     
+
         let tbody = document.querySelector("#users > tbody");
         let row = document.createElement("tr");
         createCell(user.id.toString(), row);
