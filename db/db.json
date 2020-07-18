@@ -1,11 +1,25 @@
 {
-    "users" : [
-        { "id": "1", "name": "Clint Eastwood", "email": "clint@eastwood.com", "address": "1112 Putrifalva, Marhapássztor dűlő 12.", "tel": "+36 70/678-5467" },
-        { "id": "2", "name": "Vladimir Putin", "email": "putin@kreml.ru", "address": "5555 Москва, Красная площадь 1", "tel": "+7 1" },
-        { "id": "3", "name": "Sancho Panza", "email": "sancho@loco.es", "address": "123 La Mancha, Malom köz 9.", "tel": "+ 34/342-2211" }
-    ]
-
-
-
-
+  "users": [
+    {
+      "id": "1",
+      "name": "Clint Eastwood",
+      "email": "clint@eastwood.com",
+      "address": "1112 Putrifalva, Marhapássztor dűlő 12.",
+      "tel": "+36 70/678-5467"
+    },
+    {
+      "id": "2",
+      "name": "Vladimir Putin",
+      "email": "putin@kreml.ru",
+      "address": "5555 Москва, Красная площадь 1",
+      "tel": "+7 1"
+    },
+    {
+      "id": "3",
+      "name": "Sancho Panza",
+      "email": "sancho@loco.es",
+      "address": "123 La Mancha, Malom köz 9.",
+      "tel": "+ 34/342-2211"
+    }
+  ]
 }

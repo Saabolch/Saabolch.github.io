@@ -12,7 +12,7 @@ window.onload = function () {
         method: "GET",
         headers: new Headers(),
         mode: "cors",
-        cache: "default"
+        cache: "no-cache"
     };
 
     const fetchUsers = fetch("http://localhost:3000/users", fetchInit);
@@ -47,11 +47,11 @@ window.onload = function () {
         group.classList.add("btn-group");
         let modify = document.createElement("button");
         modify.setAttribute("class", "btn btn-info");
-        modify.innerHTML = "Módosítás";
+        modify.innerHTML = "<i class='fa fa-refresh' aria-hidden='true' ></i>";
         modify.onclick = modifyUser;
         let del = document.createElement("button");
         del.setAttribute("class", "btn btn-danger");
-        del.innerHTML = "Törlés";
+        del.innerHTML = "<i class='fa fa-trash' aria-hidden='true' ></i>";
         del.onclick = deleteUser;
         group.appendChild(modify);
         group.appendChild(del);
@@ -59,7 +59,7 @@ window.onload = function () {
     }
 
     function init(u) {
-
+        users = u;
         let addUserButton = document.querySelector("#addUser");
         addUserButton.addEventListener("click", addUser);
 
@@ -82,7 +82,7 @@ window.onload = function () {
 
         let tbody = document.createElement("tbody");
 
-        for (let user of u) {
+        for (let user of users) {
             let row = document.createElement("tr");
             createCell(user.id, row);
             createCell(user.name, row);
@@ -128,26 +128,59 @@ window.onload = function () {
         let addressInput = row.children[3].children[0];
         let telInput = row.children[4].children[0];
 
-        for (let user of users) {
-            if (user.id == id) {
-                user.name = nameInput.value.trim();
-                user.email = emailInput.value.trim();
-                user.address = addressInput.value.trim();
-                user.tel = telInput.value.trim();
+        let user;
+
+        for (let u of users) {
+            if (u.id == id) {
+
+                u.name = nameInput.value.trim();
+                u.email = emailInput.value.trim();
+                u.address = addressInput.value.trim();
+                u.tel = telInput.value.trim();
+                user = u;
                 //alert(user.name + " " + user.email + " " + user.address + " " + user.tel);
             }
         }
 
-        for (let i = 1; i < row.children.length - 1; i++) {
+        let fetchOptions = {
+            method: 'PUT',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify( user )
+          };
+          fetch( "http://localhost:3000/users/" + user.id, fetchOptions )
+            .then( resp => resp.json() )
+            .then( json => {
+                console.log(json); 
+                restoreCells();
+            })         
+            .catch( (error) => {
+                console.error(error);
+                restoreCells();
+            });
 
-            let cell = row.children[i];
-            let input = cell.children[0];
-            cell.innerHTML = input.value;
 
-        }
-        let buttonCell = row.children[5];
-        buttonCell.innerHTML = "";
-        buttonCell.appendChild(createButtons());
+        function restoreCells(){
+
+            for (let i = 1; i < row.children.length - 1; i++) {
+    
+                let cell = row.children[i];
+                let input = cell.children[0];
+                cell.innerHTML = input.value;
+    
+            }
+            let buttonCell = row.children[5];
+            buttonCell.innerHTML = "";
+            buttonCell.appendChild(createButtons());
+
+
+        }    
+
+
     }
 
     function createSaveButton() {
@@ -178,21 +211,28 @@ window.onload = function () {
         let idCell = row.children[0];
         let id = idCell.innerHTML;
 
-        for (var i = 0; i < users.length; i++) { // la az i-t let használatával definiáltam volna, akkor a cikus után már nem létezne (csak a ciklus blokkjában élne)
-            if (users[i].id == id) {
-                break;
-            }
-        }
+        let fetchOptions = {
+            method: 'DELETE',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin'
+        };
+        fetch("http://localhost:3000/users/"+id, fetchOptions)
+            .then( resp => resp.json() )
+            .then( json => console.log(json) )
+            .catch( (error) => {
+                console.error(error);
 
-        users.splice(i, 1);
+                for (var i = 0; i < users.length; i++) { // la az i-t let használatával definiáltam volna, akkor a cikus után már nem létezne (csak a ciklus blokkjában élne)
+                    if (users[i].id == id) {
+                        break;
+                    }
+                }
+
+                users.splice(i, 1);
+            });
+
         table.removeChild(row);
-
-        //alert(users.length);
-        for (let i = 0; i < users.length; i++) {
-
-            //alert(users[i].name);
-        }
-
 
     }
 
@@ -215,30 +255,67 @@ window.onload = function () {
             return;
         }
 
+        nameInput.value = "";
+        emailInput.value = "";
+        addressInput.value = "";
+        telInput.value = "";
+        
         let maxId = users[0].id;
         for (u of users) {
             if (u.id > maxId) {
                 maxId = u.id;
             }
         }
-        user.id = parseInt(u.id) + 1;
+        user.id = String(parseInt(u.id) + 1);
 
-        users.push(user);
+        let fetchOptions = {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify( user )
+        };
 
-        let tbody = document.querySelector("#users > tbody");
-        let row = document.createElement("tr");
-        createCell(user.id.toString(), row);
-        createCell(user.name, row);
-        createCell(user.email, row);
-        createCell(user.address, row);
-        createCell(user.tel, row);
-        createCell(createButtons(), row);
-        tbody.appendChild(row);
+        fetch( "http://localhost:3000/users/", fetchOptions )
+            .then( resp => resp.json() )
+            .then( newuser => {
+                console.log(newuser);
 
-        nameInput.value = "";
-        emailInput.value = "";
-        addressInput.value = "";
-        telInput.value = "";
+                users.push(newuser);
+                addUserToTable(newuser);
+                
+                console.log(users);
+            })
+            .catch( (error) => {
+
+                console.error(error);
+            
+                users.push(user);
+                addUserToTable(user);
+            });
+
+
+           function addUserToTable(u){
+
+               let tbody = document.querySelector("#users > tbody");
+               let row = document.createElement("tr");
+               createCell(u.id.toString(), row);
+               createCell(u.name, row);
+               createCell(u.email, row);
+               createCell(u.address, row);
+               createCell(u.tel, row);
+               createCell(createButtons(), row);
+               tbody.appendChild(row);
+       
+
+
+           }     
+
+
+
 
 
     }
