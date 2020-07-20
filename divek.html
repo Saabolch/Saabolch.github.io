@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .example {
+            border: 2px solid black;
+        }
+
+        .fixedWidth {
+            width: 300px;
+            height: 100px;
+            background: lightgreen;
+        }
+
+        .fullWidth {
+
+            height: 100px;
+            background-color: lightblue;
+
+        }
+
+        .leftFloated {
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid white;
+        }
+
+        .cleared {
+            clear: both;
+            width: 300px;
+            height: 100px;
+            background-color: red;
+            border: 1px solid white;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+
+            function toggleFloat() {
+
+                let float = this.style.cssFloat;
+                console.log(float);
+
+                if (float == "left") {
+                    float = "none";
+                }
+                else if (float == "none") {
+                    float = "right";
+                }
+                else if (float == "right") {
+                    float = "left";
+                }
+                this.style.cssFloat = float;
+                let number = this.innerHTML.split("<br>")[0];
+
+                this.innerHTML = `${number}<br>float: ${float};
+                    width: 300px;
+                 height: 100px;            
+                 background-color: yellow;
+                 border: 1px solid white;   `;
+
+            }
+
+            function toggleClear() {
+                let clear = this.style.clear;
+                console.log(clear);
+
+                if (clear == "both") {
+                    clear = "left";
+                }
+                else if (clear == "left") {
+                    clear = "right";
+                }
+                else if (clear == "right") {
+                    clear = "both";
+                }
+                this.style.clear = clear;
+                let number = this.innerHTML.split("<br>")[0];
+
+                this.innerHTML = `${number}<br>clear: ${clear};
+                    width: 300px;
+                 height: 100px;            
+                 background-color: red;
+                 border: 1px solid white;   `;
+
+
+            }
+
+            let leftFloated = document.querySelectorAll(".leftFloated");
+            leftFloated.forEach(function (item) {
+
+                item.addEventListener("click", toggleFloat);
+            });
+
+
+            let cleared = document.querySelectorAll(".cleared");
+            cleared.forEach(function (item) {
+
+                item.addEventListener("click", toggleClear);
+            });
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <h2>1. példa</h2>
+    <div class="example">
+        <div class="fixedWidth">
+            width: 300px;
+            height: 100px;
+            background: green;
+        </div>
+        <div class="fullWidth">
+            height: 100px;
+            background-color: blue;
+        </div>
+
+    </div>
+    <h2>2. példa</h2>
+    <div class="example">
+        <div class="fixedWidth">
+            width: 300px;
+            height: 100px;
+            background: green;
+        </div>
+        <div class="fixedWidth">
+            width: 300px;
+            height: 100px;
+            background: green;
+        </div>
+
+    </div>
+    <h2>3. példa: Floated elemek. (figyeld meg, hogy a lebegő elemeket tartalmazó div nem veszi fel a benne lévő
+        elemeknek megfelelő méretet)
+    </h2>
+    <p>Kattints az elemekre, hogy megváltoztasd a float értéküket (left, none, right). Először sorban, aztán össze
+        vissza.</p>
+    <p>Változtasd a böngészőablak szélességét, hogy megfigyeld, a float hogyan rendezi az elemeket egymás mellé illetve
+        alá.</p>
+    <div class="example">
+        <div class="leftFloated" style="float: left">
+            Sorszám: 1<br>
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid white;
+        </div>
+        <div class="leftFloated" style="float: left">
+            Sorszám: 2<br>
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid white;
+        </div>
+        <div class="leftFloated" style="float: left">
+            Sorszám: 3<br>
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid white;
+        </div>
+        <div class="leftFloated" style="float: left">
+            Sorszám: 4<br>
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid white;
+        </div>
+
+    </div>
+
+    <h2 style="clear: both; margin-top: 0px">4. példa: A lebegést a clear tulajdonsággal tudod megakadályozni.</h2>
+    <p>Kattints a piros elemre a clear tulajdonság megváltoztatásához: both, left, right. A sárga elemekre is
+        kattinthatsz a float tulajdonság megváltoztatásához.</p>
+    <div class="example">
+        <div class="leftFloated" style="float: left">
+            Sorszám: 1<br>
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid white;
+
+        </div>
+        <div class="leftFloated" style="float: left">
+            Sorszám: 2<br>
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid white;
+
+        </div>
+        <div class="cleared" style="clear: both">
+            Sorszám: 3<br>
+            clear: both;
+            width: 300px;
+            height: 100px;
+            background-color: red;
+            border: 1px solid white;
+
+        </div>
+        <div class="leftFloated" style="float: left">
+            Sorszám: 4<br>
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid white;
+
+        </div>
+    </div>
+<h2 style="clear:both">5. példa</h2>
+<div class="example">
+<div class="leftFloated" style="float: left">
+Sorszám: 1<br>
+float: left;
+width: 300px;
+height: 100px;
+background-color: yellow;
+border: 1px solid white;
+</div>
+<p>
+Paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices neque a est sagittis volutpat. Integer congue eget mauris in egestas. In imperdiet viverra porttitor. Proin eget pretium felis. Sed eu mollis est. Etiam congue placerat nisi, quis sagittis nunc. Nulla facilisi. In pharetra molestie enim, et sollicitudin quam congue tristique. Nunc id metus fringilla ligula volutpat malesuada. Nullam tristique posuere magna, laoreet tempor lacus fringilla sit amet. Sed pellentesque augue id ante porta aliquam.
+</p>
+<p>Ut maximus risus nec dui tempor faucibus. Fusce volutpat, urna mattis tristique tristique, leo nulla convallis ligula, in maximus purus arcu ut magna. Nam faucibus ultrices tortor fringilla facilisis. Nulla eget iaculis felis. Mauris et malesuada sem, ac faucibus ipsum. Integer fermentum aliquet orci in interdum. Pellentesque pellentesque quis velit eu consequat. Mauris imperdiet neque quis urna tempor, placerat gravida diam convallis. Fusce cursus dignissim facilisis. Curabitur dui justo, viverra id massa eu, pharetra maximus quam.</p>
+
+</div>
+
+
+    
+</body>
+
+</html>

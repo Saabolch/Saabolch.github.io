@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flexBox {
+            display: flex;
+            border: 2px solid black;
+        }
+
+        .flexItem {
+            background-color: lightgreen;
+            border: 1px solid white;
+
+        }
+
+        .flexItemFixedWidth {
+            background-color: green;
+            width: 200px;
+            border: 1px solid white;
+        }
+
+        .flexItemFixedHeight {
+            background-color: lightblue;
+            height: 200px;
+            border: 1px solid white;
+        }
+    </style>
+    <script>
+
+        window.onload = function () {
+            let justifys = document.querySelectorAll("input[name='justify']");
+
+            justifys.forEach(function (item) {
+
+                item.addEventListener("change", function () {
+                    let checked = document.querySelector("input[name='justify']:checked").value;
+                    let flexboxes = document.querySelectorAll(".flexBox");
+
+                    flexboxes.forEach(function (item) {
+                        item.style.justifyContent = checked;
+
+                    });
+
+                });
+            });
+
+            let aligns = document.querySelectorAll("input[name='align']");
+
+            aligns.forEach(function (item) {
+
+                item.addEventListener("change", function () {
+                    let checked = document.querySelector("input[name='align']:checked").value;
+                    let flexboxes = document.querySelectorAll(".flexBox");
+
+                    flexboxes.forEach(function (item) {
+                        item.style.alignItems = checked;
+
+                    });
+
+                });
+            });
+
+            let aligncontents = document.querySelectorAll("input[name='aligncontent']");
+
+            aligncontents.forEach(function (item) {
+
+                item.addEventListener("change", function () {
+                    let checked = document.querySelector("input[name='aligncontent']:checked").value;
+                    let flexboxes = document.querySelectorAll(".flexBox");
+
+                    flexboxes.forEach(function (item) {
+                        item.style.alignContent = checked;
+
+                    });
+
+                });
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Flexbox</h1>
+    <h2>1. Példa: Flex</h2>
+    <p>A konténer div-re beállítottam a display: flex tulajdonságot.</p>
+    <p>Az flex elemek egymás mellé rendeződnek, a méretüket a tartalmuk határozza meg, és egy sorba próbálnak
+        bepréselődni.</p>
+    <p>Húzással csökkentsd a böngészőablak szélességét, és meglátod, hogy az elemek egyre keskenyednek, de egymás
+        mellett maradnak, csak a szöveg wrap-elődése növeli a magasságukat. </p>
+    <div class="flexBox">
+        <div class="flexItem"> background-color: lightgreen;</div>
+        <div class="flexItem"> background-color: lightgreen;Lorem ipsum dolor sit amet</div>
+        <div class="flexItem"> background-color: lightgreen;Ut maximus</div>
+        <div class="flexItem"> background-color: lightgreen;</div>
+    </div>
+
+    <h2>2. példa: Flex </h2>
+    <p>A konténer divnek megadtam a flex-wrap: wrap tulajdonságot.</p>
+    <p>Húzással csökkentsd a böngészőablak szélességét, és meglátod, hogy az elemek nem mennek össze, hanem ha már nem
+        férnek el egymás mellett, akkor egymás alá rendeződnek. </p>
+    <p></p>
+
+    <div class="flexBox" style="flex-wrap: wrap">
+        <div class="flexItem"> background-color: lightgreen;</div>
+        <div class="flexItem"> background-color: lightgreen;Lorem ipsum dolor sit amet</div>
+        <div class="flexItem"> background-color: lightgreen;Ut maximus</div>
+        <div class="flexItem"> background-color: lightgreen;</div>
+    </div>
+
+    <div id="flexControl">
+        <p>Módosítsd a flex konténer justify-content tulajdonságát, hogy lásd hogyan rendeződnek az elemek egymás
+            mellett:</p>
+        <label for="radio-flex-start">flex-start</label>
+        <input type="radio" name="justify" id="radio-flex-start" value="flex-start" checked>
+
+        <label for="radio-center">center</label>
+        <input type="radio" name="justify" id="radio-center" value="center">
+
+        <label for="radio-flex-end">flex-end</label>
+        <input type="radio" name="justify" id="radio-flex-end" value="flex-end">
+
+        <label for="radio-space-around">space-around</label>
+        <input type="radio" name="justify" id="radio-space-around" value="space-around">
+
+        <label for="radio-space-between">space-between</label>
+        <input type="radio" name="justify" id="radio-space-between" value="space-between">
+
+    </div>
+
+    <h2>3. Példa</h2>
+    <p>Beállíthatsz fix szélességet egy flex item-nek. </p>
+    <p>Ha nincs beállítva wrappelés, akkor a böngészőablakot összehúzva a fix szélességű elem is összemegy.</p>
+    <div class="flexBox">
+        <div class="flexItemFixedWidth"> width: 200px; background-color: green;</div>
+        <div class="flexItem"> background-color: lightgreen; Lorem ipsum dolor sit amet</div>
+        <div class="flexItem"> background-color: lightgreen;Ut maximus</div>
+        <div class="flexItem"> background-color: lightgreen;</div>
+    </div>
+    <p>Ha be van állítva a wrappelés, akkor a böngészőablakot összehúzva a fix szélességű elem nem megy össze.</p>
+    <div class="flexBox" style="flex-wrap: wrap">
+        <div class="flexItemFixedWidth"> width: 200px; background-color: green;</div>
+        <div class="flexItem"> background-color: lightgreen; Lorem ipsum dolor sit amet</div>
+        <div class="flexItem"> background-color: lightgreen;Ut maximus</div>
+        <div class="flexItem"> background-color: lightgreen;</div>
+    </div>
+    <p>Ha nincs beállítva a wrappelés, akkor beállíthatod a flex-item min-width tulajdonságát, hogy mégse menjen össze.
+    </p>
+    <div class="flexBox">
+        <div class="flexItemFixedWidth" style="min-width: 200px;"> width: 200px; min-width: 200px; background-color:
+            green;</div>
+        <div class="flexItem"> background-color: lightgreen; Lorem ipsum dolor sit amet</div>
+        <div class="flexItem"> background-color: lightgreen;Ut maximus</div>
+        <div class="flexItem"> background-color: lightgreen;</div>
+    </div>
+    <p>Ha azt akarod, hogy a fix szélességű elem melletti elem kitöltse a teljes ablak szélességét, akkor állíts be neki
+        valamilyen nagy szélességet. </p>
+    <p>Húzd össze a böngészőablakot: a min-width-el beállított elem nem megy össze, de a sima width-el beállított elem
+        szélessége alkalmazkodik.</p>
+    <div class="flexBox">
+        <div class="flexItemFixedWidth" style="min-width: 200px;"> width: 200px; min-width: 200px; background-color:
+            green;</div>
+        <div class="flexItem" style="width: 90%"> width: 90%; background-color: lightgreen; Lorem ipsum dolor sit amet
+        </div>
+    </div>
+
+
+
+    <h2>4. Példa</h2>
+    <p>Beállíthatsz fix magasságot is egy flex item-nek. Ekkor a flexbox magassága igazodik a tartalom magasságához, a
+        többi nem beállított magasságú flex-item pedig megnyúlik. </p>
+    <div class="flexBox">
+        <div class="flexItem"> background-color: green;</div>
+        <div class="flexItemFixedHeight"> height: 200px; background-color: lightblue; Lorem ipsum dolor sit amet</div>
+        <div class="flexItem"> background-color: lightgreen;Ut maximus</div>
+        <div class="flexItem" style="height: 100px"> height: 100px; background-color: lightgreen;</div>
+    </div>
+    <p>Wrappelve így néz ki:</p>
+    <div class="flexBox" style="flex-wrap: wrap">
+        <div class="flexItem"> height: 200px; background-color: green;</div>
+        <div class="flexItemFixedHeight"> height: 200px; background-color: lightblue; Lorem ipsum dolor sit amet</div>
+        <div class="flexItem"> background-color: lightgreen;Ut maximus</div>
+        <div class="flexItem" style="height: 100px"> height: 100px; background-color: lightgreen;</div>
+    </div>
+
+    <div id="flexControl">
+        <p>Módosítsd a flex konténer align-items tulajdonságát, hogy lásd hogyan rendeződnek az elemek függőlegesen:</p>
+        <label for="radio-align-flex-start">flex-start</label>
+        <input type="radio" name="align" id="radio-align-flex-start" value="flex-start">
+
+        <label for="radio-align-center">center</label>
+        <input type="radio" name="align" id="radio-align-center" value="center">
+
+        <label for="radio-align-flex-end">flex-end</label>
+        <input type="radio" name="align" id="radio-align-flex-end" value="flex-end">
+
+        <label for="radio-align-stretch">stretch</label>
+        <input type="radio" name="align" id="radio-align-stretch" value="stretch" checked>
+
+        <label for="radio-align-baseline">baseline</label>
+        <input type="radio" name="align" id="radio-align-baseline" value="baseline">
+
+    </div>
+
+    <h2>5. Példa</h2>
+    <p>Ha be van állítva a flex-wrap: wrap tulajdonság a flex-konténerre, és a konténer magassága is be van állítva, és az meghaladja a tartalom magasságát, akkor 
+        függőlegesen az egyes sorokat az align-content tulajdonsággal igazíthatjuk. 
+    </p>
+    <div class="flexBox" style="flex-wrap: wrap; height: 600px">
+        <div class="flexItem"> background-color: lightgreen;</div>
+        <div class="flexItemFixedHeight"> height: 200px; background-color: lightblue; Lorem ipsum dolor sit amet</div>
+        <div class="flexItem"> background-color: lightgreen;Lorem ipsum dolor sit amet</div>
+        <div class="flexItem" style="height: 100px"> height: 100px; background-color: lightgreen;</div>
+        <div class="flexItem"> background-color: lightgreen;</div>
+        <div class="flexItem" style="width: 400px"> width: 400px; background-color: lightgreen;
+            <p>Ut maximus risus nec dui tempor faucibus. Fusce volutpat, urna mattis tristique tristique, leo nulla
+                convallis ligula, in maximus purus arcu ut magna. Nam faucibus ultrices tortor fringilla facilisis.
+                Nulla eget iaculis felis. Mauris et malesuada sem, ac faucibus ipsum. Integer fermentum aliquet orci in
+                interdum. Pellentesque pellentesque quis velit eu consequat. Mauris imperdiet neque quis urna tempor,
+                placerat gravida diam convallis. Fusce cursus dignissim facilisis. Curabitur dui justo, viverra id massa
+                eu, pharetra maximus quam.</p>
+
+
+        </div>
+    </div>
+        <div id="flexControl">
+            <p>Módosítsd a flex konténer align-content tulajdonságát, hogy lásd hogyan rendeződnek az egyes wrappelt
+                sorok függőlegesen:</p>
+            <label for="radio-aligncontent-flex-start">flex-start</label>
+            <input type="radio" name="aligncontent" id="radio-aligncontent-flex-start" value="flex-start">
+
+            <label for="radio-aligncontent-center">center</label>
+            <input type="radio" name="aligncontent" id="radio-aligncontent-center" value="center">
+
+            <label for="radio-aligncontent-flex-end">flex-end</label>
+            <input type="radio" name="aligncontent" id="radio-aligncontent-flex-end" value="flex-end">
+
+            <label for="radio-aligncontent-stretch">stretch</label>
+            <input type="radio" name="aligncontent" id="radio-aligncontent-stretch" value="stretch" checked>
+
+            <label for="radio-aligncontent-space-between">space-between</label>
+            <input type="radio" name="aligncontent" id="radio-aligncontent-space-between" value="space-between">
+            <label for="radio-aligncontent-space-around">space-around</label>
+            <input type="radio" name="aligncontent" id="radio-aligncontent-space-around" value="space-around">
+        </div>
+
+
+
+
+
+</body>
+
+
+
+
+
+</html>
